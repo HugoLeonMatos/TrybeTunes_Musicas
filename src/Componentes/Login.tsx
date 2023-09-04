@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import { useNavigate, History } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { createUser } from '../services/userAPI';
 import LoadingMessage from './LoadingMessage';
 
-type LoginProps = {
-  history: History
-};
+// type LoginProps = {
+//   history: {
+//     push: (path: string) => void;
+//   };
+// };
 
-function Login({ history }: LoginProps) {
+function Login() {
   const [name, setName] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [load, setLoad] = useState(false);
 
   const navigate = useNavigate();
+
+  // const history = useHistory();
 
   const handleNameInputMin = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -31,7 +35,7 @@ function Login({ history }: LoginProps) {
 
       setLoad(false);
       navigate('/search');
-      history.push('/search');
+      // history.push('/search');
     } catch (error) {
       console.error(error);
       setLoad(false);
