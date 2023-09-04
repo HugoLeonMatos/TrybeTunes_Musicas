@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { createUser } from '../services/userAPI';
 import LoadingMessage from './LoadingMessage';
 
-interface LoginProps {
+type LoginProps = {
   history: {
     push: (path: string) => void;
   };
-}
+};
 
 function Login({ history }: LoginProps) {
   const [name, setName] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [load, setLoad] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleNameInputMin = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -27,7 +30,9 @@ function Login({ history }: LoginProps) {
 
     try {
       await createUser({ name });
+
       setLoad(false);
+      navigate('/search');
       history.push('/search');
     } catch (error) {
       console.error(error);
