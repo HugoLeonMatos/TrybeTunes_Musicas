@@ -110,6 +110,7 @@ function Album() {
       )}
       {musics.map((music) => (
         <MusicCard
+          trackId={ music.trackId }
           key={ music.trackId }
           trackName={ music.trackName }
           previewUrl={ music.previewUrl }
