@@ -1,5 +1,3 @@
-// src/pages/coffee/index.tsx
-
 function LoadingMessage() {
   return (
     <div data-testid="page-load">
